@@ -32,7 +32,18 @@ pipeline {
                 }
             }
         }
-        
+        stage('Integration tests'){
+            when {
+                expression {params.ENVIRONMENT == 'qa'}
+            }
+            steps{
+                script{
+                    sh """
+                        echo "Run integration tests"
+                    """
+                }
+            }
+        }
         stage('Deploy'){
             // when {
             //     expression { params.deploy }
