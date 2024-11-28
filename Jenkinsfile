@@ -44,6 +44,20 @@ pipeline {
                 }
             }
         }
+        stage('Check JIRA'){
+            when {
+                expression {params.ENVIRONMENT == 'prod'}
+            }
+            steps{
+                script{
+                    sh """
+                        echo "check jira status"
+                        echo "check jira deployment window"
+                        echo "fail pipeline if above two are not true"
+                    """
+                }
+            }
+        }
         stage('Deploy'){
             // when {
             //     expression { params.deploy }
